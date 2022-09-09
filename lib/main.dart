@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:search_textfield/src/models/book.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +29,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  TextEditingController controller = TextEditingController();
+  final TextEditingController controller = TextEditingController();
+
+  List<Book> books = allBooks;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +53,23 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderSide:
                           const BorderSide(color: Colors.lightBlueAccent))),
             ),
-          )
+          ),
+          Expanded(
+              child: ListView.builder(
+                  itemCount: books.length,
+                  itemBuilder: (context, index) {
+                    final book = books[index];
+
+                    return ListTile(
+                      leading: Image.network(
+                        book.urlImage,
+                        fit: BoxFit.cover,
+                        width: 50,
+                        height: 50,
+                      ),
+                      title: Text(book.title),
+                    );
+                  }))
         ],
       ),
     );
