@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderRadius: BorderRadius.circular(20),
                       borderSide:
                           const BorderSide(color: Colors.lightBlueAccent))),
+              onChanged: searchBook,
             ),
           ),
           Expanded(
@@ -73,5 +74,15 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
+  }
+
+  void searchBook(String query) {
+    final suggestions = allBooks.where((book) {
+      final bookTile = book.title.toLowerCase();
+      final input = query.toLowerCase();
+      return bookTile.contains(input);
+    }).toList();
+
+    setState(() => books = suggestions);
   }
 }
