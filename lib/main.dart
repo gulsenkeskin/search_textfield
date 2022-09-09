@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:search_textfield/src/models/book.dart';
 
+import 'src/pages/book_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -69,6 +71,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         height: 50,
                       ),
                       title: Text(book.title),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => BookPage(book: book))),
                     );
                   }))
         ],
