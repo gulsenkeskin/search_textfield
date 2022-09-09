@@ -28,15 +28,31 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body:const SizedBox(),
+      body: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.all(16),
+            child: TextField(
+              controller: controller,
+              decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.search),
+                  hintText: 'Book Title',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide:
+                          const BorderSide(color: Colors.lightBlueAccent))),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
